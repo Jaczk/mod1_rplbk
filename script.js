@@ -1449,15 +1449,30 @@ const aegis = [
 
 //   aegis.innerHTML = inval.value;
 // })
-const filteraegis = (aegis, keys, con) => 
-  aegis.filter(con).map( el => 
+const filteraegis = (data, keys, con) =>
+  data.filter(con).map((el) =>
     keys.reduce((acc, key) => {
       acc[key] = el[key];
       return acc;
-    },{})
-    );
-
+    }, {})
+  );
+console.log(
+  filteraegis(
+    aegis,
+    [
+      "nama_lengkap",
+      "nama_panggilan",
+      "nomor_telepon",
+      "id_line",
+      "tanggal_lahir",
+      "nim",
+      "email",
+      "hobi",
+    ],
+    (user) => user.nim == "21120119130051"
+  )
+);
 const checkOnKeyUp = (inputDTO) => {
-  let aegis = document.querySelector('#aegisinfo');
-  return aegis.innerHTML = inputDTO.value;
-}
+  let aegis = document.querySelector("#aegisinfo");
+  return (aegis.innerHTML = inputDTO.value);
+};
