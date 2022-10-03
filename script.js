@@ -1456,23 +1456,46 @@ const filteraegis = (data, keys, con) =>
       return acc;
     }, {})
   );
-console.log(
-  filteraegis(
-    aegis,
-    [
-      "nama_lengkap",
-      "nama_panggilan",
-      "nomor_telepon",
-      "id_line",
-      "tanggal_lahir",
-      "nim",
-      "email",
-      "hobi",
-    ],
-    (user) => user.nim == "21120119130051"
-  )
-);
-const checkOnKeyUp = (inputDTO) => {
-  let aegis = document.querySelector("#aegisinfo");
-  return (aegis.innerHTML = inputDTO.value);
-};
+
+  function returnData(){
+    let inval = document.querySelector("#inputval").value;
+    let aegis2 = document.querySelector("#aegisinfo");
+    let filterdata = filteraegis(
+      aegis,
+      [
+        "nama_lengkap",
+        "nama_panggilan",
+        "nomor_telepon",
+        "id_line",
+        "tanggal_lahir",
+        "nim",
+        "email",
+        "hobi",
+      ],
+      (user) => user.nim == inval
+    );
+    const parseJson = JSON.stringify(filterdata);
+    aegis2.innerHTML = parseJson;
+
+    // console.log(filterdata)
+  }
+// console.log(
+//   filteraegis(
+//     aegis,
+//     [
+//       "nama_lengkap",
+//       "nama_panggilan",
+//       "nomor_telepon",
+//       "id_line",
+//       "tanggal_lahir",
+//       "nim",
+//       "email",
+//       "hobi",
+//     ],
+//     (user) => user.nim == "21120119130051"
+//   )
+// );
+// const checkOnKeyUp = (inputDTO) => {
+//   let aegis = document.querySelector("#aegisinfo");
+//   return (aegis.innerHTML = inputDTO.value);
+// };
