@@ -1442,13 +1442,6 @@ const aegis = [
     hobi: "olahraga",
   },
 ];
-// let inval = document.querySelector('#inputval');
-
-// inval.addEventListener('keyup', (e)=>{
-//   let aegis = document.querySelector('#aegisinfo');
-
-//   aegis.innerHTML = inval.value;
-// })
 const filteraegis = (data, keys, con) =>
   data.filter(con).map((el) =>
     keys.reduce((acc, key) => {
@@ -1457,9 +1450,18 @@ const filteraegis = (data, keys, con) =>
     }, {})
   );
 
+
   function returnData(){
     let inval = document.querySelector("#inputval").value;
     let aegis2 = document.querySelector("#aegisinfo");
+    let juduls = document.querySelector("#judul");
+    let filterjudul = filteraegis(
+      aegis,
+      [
+        "nama_lengkap"
+      ],
+      (user) => user.nim == inval
+    );
     let filterdata = filteraegis(
       aegis,
       [
@@ -1474,28 +1476,10 @@ const filteraegis = (data, keys, con) =>
       ],
       (user) => user.nim == inval
     );
+    let judulnama = filterjudul;
+    const parseJudul = JSON.stringify(judulnama);
+    const judulfil = JSON.parse(parseJudul);
+    juduls.innerHTML = judulfil.nama_lengkap;
     const parseJson = JSON.stringify(filterdata);
     aegis2.innerHTML = parseJson;
-
-    // console.log(filterdata)
   }
-// console.log(
-//   filteraegis(
-//     aegis,
-//     [
-//       "nama_lengkap",
-//       "nama_panggilan",
-//       "nomor_telepon",
-//       "id_line",
-//       "tanggal_lahir",
-//       "nim",
-//       "email",
-//       "hobi",
-//     ],
-//     (user) => user.nim == "21120119130051"
-//   )
-// );
-// const checkOnKeyUp = (inputDTO) => {
-//   let aegis = document.querySelector("#aegisinfo");
-//   return (aegis.innerHTML = inputDTO.value);
-// };
