@@ -1442,44 +1442,51 @@ const aegis = [
     hobi: "olahraga",
   },
 ];
-const filteraegis = (data, keys, con) =>
-  data.filter(con).map((el) =>
-    keys.reduce((acc, key) => {
-      acc[key] = el[key];
-      return acc;
-    }, {})
-  );
 
+const search = document.getElementById("inputval");
+let nalengs = document.querySelector("#namaleng");
+let nampang = document.querySelector("#namapang");
+let nomtels = document.querySelector("#nomtel");
+let lineid = document.querySelector("#idline");
+let ttl = document.querySelector("#tanglir");
+let nim2 = document.querySelector("#nims");
+let emails = document.querySelector("#email");
+let hobb = document.querySelector("#hobi");
+let juduls = document.querySelector("#judul");
 
-  function returnData(){
-    let inval = document.querySelector("#inputval").value;
-    let aegis2 = document.querySelector("#aegisinfo");
-    let juduls = document.querySelector("#judul");
-    let filterjudul = filteraegis(
-      aegis,
-      [
-        "nama_lengkap"
-      ],
-      (user) => user.nim == inval
-    );
-    let filterdata = filteraegis(
-      aegis,
-      [
-        "nama_lengkap",
-        "nama_panggilan",
-        "nomor_telepon",
-        "id_line",
-        "tanggal_lahir",
-        "nim",
-        "email",
-        "hobi",
-      ],
-      (user) => user.nim == inval
-    );
-    let judulnama = filterjudul;
-    const parseJudul = JSON.stringify(judulnama);
-    const judulfil = JSON.parse(parseJudul);
-    juduls.innerHTML = judulfil.nama_lengkap;
-    const parseJson = JSON.stringify(filterdata);
-    aegis2.innerHTML = parseJson;
-  }
+search.addEventListener("keyup", (e) => {
+    const searchString = e.target.value.toLowerCase();
+    var filteredDat = aegis.filter((s) => {
+        return s.nim.toString() === searchString.toString();
+    });
+    console.log(filteredDat);
+
+    if (filteredDat.length) {
+        juduls.innerHTML = _.pluck(filteredDat, "nama_lengkap");
+
+        nalengs.innerHTML =
+            "Nama Lengkap   :   " + _.pluck(filteredDat, "nama_lengkap");
+        nampang.innerHTML =
+            "Nama Panggilan :   " + _.pluck(filteredDat, "nama_panggilan");
+        nomtels.innerHTML =
+            "Nomor Telepon  :   " + _.pluck(filteredDat, "nomor_telepon");
+        lineid.innerHTML = "ID Line        :   " + _.pluck(filteredDat, "id_line");
+        ttl.innerHTML =
+            "Tanggal Lahir  :   " + _.pluck(filteredDat, "tanggal_lahir");
+        nim2.innerHTML = "NIM            :   " + _.pluck(filteredDat, "nim");
+        emails.innerHTML = "Email          :   " + _.pluck(filteredDat, "email");
+        hobb.innerHTML = "Hobi           :   " + _.pluck(filteredDat, "hobi");
+    }
+    else {
+        document.getElementById("namaleng").innerHTML = "Data Tidak Ditemukan gan!";
+        document.getElementById("namapang").innerHTML = "";
+        document.getElementById("nomtel").innerHTML = "";
+        document.getElementById("idline").innerHTML = "";
+        document.getElementById("tanglir").innerHTML = "";
+        document.getElementById("nims").innerHTML = "";
+        document.getElementById("email").innerHTML = "";
+        document.getElementById("hobi").innerHTML = "";
+        document.getElementById("judul").innerHTML = "";
+    }
+});
+
