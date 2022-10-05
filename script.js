@@ -1455,38 +1455,38 @@ let hobb = document.querySelector("#hobi");
 let juduls = document.querySelector("#judul");
 
 search.addEventListener("keyup", (e) => {
-    const searchString = e.target.value.toLowerCase();
-    var filteredDat = aegis.filter((s) => {
-        return s.nim.toString() === searchString.toString();
-    });
-    console.log(filteredDat);
+  const searchString = e.target.value.toLowerCase();
+  var filteredDat = aegis.filter((s) => {
+    return s.nim.toString() === searchString.toString();
+  });
+  console.log(filteredDat);
 
-    if (filteredDat.length) {
-        juduls.innerHTML = _.pluck(filteredDat, "nama_lengkap");
+  if (filteredDat.length) {
+    juduls.innerHTML = _.pluck(filteredDat, "nama_lengkap");
 
-        nalengs.innerHTML =
-            "Nama Lengkap   :   " + _.pluck(filteredDat, "nama_lengkap");
-        nampang.innerHTML =
-            "Nama Panggilan :   " + _.pluck(filteredDat, "nama_panggilan");
-        nomtels.innerHTML =
-            "Nomor Telepon  :   " + _.pluck(filteredDat, "nomor_telepon");
-        lineid.innerHTML = "ID Line        :   " + _.pluck(filteredDat, "id_line");
-        ttl.innerHTML =
-            "Tanggal Lahir  :   " + _.pluck(filteredDat, "tanggal_lahir");
-        nim2.innerHTML = "NIM            :   " + _.pluck(filteredDat, "nim");
-        emails.innerHTML = "Email          :   " + _.pluck(filteredDat, "email");
-        hobb.innerHTML = "Hobi           :   " + _.pluck(filteredDat, "hobi");
-    }
-    else {
-        document.getElementById("namaleng").innerHTML = "Data Tidak Ditemukan gan!";
-        document.getElementById("namapang").innerHTML = "";
-        document.getElementById("nomtel").innerHTML = "";
-        document.getElementById("idline").innerHTML = "";
-        document.getElementById("tanglir").innerHTML = "";
-        document.getElementById("nims").innerHTML = "";
-        document.getElementById("email").innerHTML = "";
-        document.getElementById("hobi").innerHTML = "";
-        document.getElementById("judul").innerHTML = "";
-    }
+    nalengs.innerHTML =
+      "Nama Lengkap   :   " + _.pluck(filteredDat, "nama_lengkap");
+    nampang.innerHTML =
+      "Nama Panggilan :   " + _.pluck(filteredDat, "nama_panggilan");
+    nomtels.innerHTML =
+      "Nomor Telepon  :   " + _.pluck(filteredDat, "nomor_telepon");
+    lineid.innerHTML = "ID Line        :   " + _.pluck(filteredDat, "id_line");
+    ttl.innerHTML =
+      "Tanggal Lahir  :   " + _.pluck(filteredDat, "tanggal_lahir");
+    nim2.innerHTML = "NIM            :   " + _.pluck(filteredDat, "nim");
+    emails.innerHTML = "Email          :   " + _.pluck(filteredDat, "email");
+    hobb.innerHTML = "Hobi           :   " + _.pluck(filteredDat, "hobi");
+  }
+  else {
+    juduls.innerHTML = "";
+    nalengs.innerHTML = "Data Tidak Ditemukan gan!";
+    nampang.innerHTML = "";
+    nomtels.innerHTML = "";
+    lineid.innerHTML = "";
+    ttl.innerHTML = "";
+    nim2.innerHTML = "";
+    emails.innerHTML = "";
+    hobb.innerHTML = "";
+  }
 });
 
